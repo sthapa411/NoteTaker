@@ -28,6 +28,19 @@ app.get("/", (request, response) => {
     console.log("Your index!");
 })
 
+//db json
+app.get("/api/notes", (request, response) => {
+
+    fs.readFile(path.join(__dirname, "db", "db.json"), 'utf8', (err, jsonString) => {
+        if (err) {
+            console.log("File read failed:", err)
+            return
+        }
+        console.log('File data:', jsonString)
+        response.json(JSON.parse(jsonString));
+        
+    })
+})
 
 
 // LISTENER
